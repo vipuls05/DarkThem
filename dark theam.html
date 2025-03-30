@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Toggle with Icon</title>
+    <style>
+        /* Default Light Mode Styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 2rem;
+            color: #f39c12;
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            color: #e67e22;
+        }
+    </style>
+    <!-- Add Font Awesome from CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Theme Toggle Icon -->
+    <button class="theme-toggle" aria-label="Toggle Theme">
+        <i class="fas fa-sun"></i>
+    </button>
+
+    <main>
+        <h1>VIPUL</h1>
+        <p></p>
+    </main>
+
+    <script>
+        const toggleButton = document.querySelector('.theme-toggle');
+        const body = document.body;
+
+        // Check for saved theme in localStorage
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark-mode') {
+            body.classList.add('dark-mode');
+            toggleButton.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+
+        // Toggle theme on icon click
+        toggleButton.addEventListener('click', () => {
+            if (body.classList.contains('dark-mode')) {
+                // Switch to light mode
+                body.classList.remove('dark-mode');
+                toggleButton.innerHTML = '<i class="fas fa-sun"></i>';
+                localStorage.setItem('theme', 'light-mode');
+            } else {
+                // Switch to dark mode
+                body.classList.add('dark-mode');
+                toggleButton.innerHTML = '<i class="fas fa-moon"></i>';
+                localStorage.setItem('theme', 'dark-mode');
+            }
+        });
+    </script>
+</body>
+</html>
